@@ -33,11 +33,12 @@ class Album(models.Model):
 
 
 class Photo(models.Model):
+    album_id = models.ForeignKey(Album, on_delete=models.CASCADE)
     url = models.CharField(db_column='URL', max_length=256, blank=False, null=False)
     caption = models.CharField(db_column='Caption', max_length=128)
     created_at = models.DateTimeField(db_column='Created', auto_now_add=True)
     updated_at = models.DateTimeField(db_column='LastUpdated', auto_now=True)
-    album_id = models.ForeignKey(Album, on_delete=models.CASCADE)
+    # image = models.ImageField(db_column='Image', max_length=254, blank=True, null=True)
 
     class Meta:
         db_table = 'Photo'
